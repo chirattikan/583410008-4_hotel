@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Room</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="fontcss/webfontkit-20171217-142157/stylesheet.css" />
+	<link rel="stylesheet" href="editpage.css" />
+
+	<!--parallax-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="parallax.js-1.5.0/parallax.js"></script>
+
+	<!-- for modal -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!--icon-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script type="text/javascript">
+		$(function(){ 
+			//$("#testhide").hide();
+
+			$("#home").hover(function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#room").hover(function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#food").hover(function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#contact").hover(function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+
+			function showModal(obj) {
+				$('#modal-title').html(obj.title);
+			    $('#modal-content').html(obj.content);
+			    $('#modal-img').attr("src",obj.url);
+			    $('#modal-show').modal();
+			}
+			$('#modal1').click(function () {  //Junior Suite
+			    showModal({title:"",content:"",url:
+			    "img/food/food1.jpg"});
+			});
+			
+		});
+
+	
+
+	</script>
+</head>
+<body class="graypage">
+	<div class="parallax-window" data-parallax="scroll" data-image-src="img/roombg.jpg" style="margin-top: -100px;"></div>
+	
+	<!--img src="img/roombg.jpg" style="position: absolute; width: 100%; z-index: -1; filter: brightness(0.8); top:-262px;"-->
+	<div style=" width: 100%;position: relative; top: -500px;">
+		<div style="position: relative; width: 100%; top: 15px;">
+			<ul class="nav justify-content-center ">
+			  	<li class="nav-item">
+			  		<div id="hover-home" style="width: 79px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light" href="index.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="home">หน้าหลัก</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-room" style="width: 40px; height: 4px; margin-left: 16px;"></div>
+			    	<a class="nav-link text-light" href="room.html"  style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="room">ห้อง</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-food" style="width: 182px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light active" href="" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="food">อาหารและเครื่องดื่ม</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-contact" style="width: 100px; height: 4px; margin-left: 19px;"></div>
+			    	<a class="nav-link text-light" href="about.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="contact">เกี่ยวกับเรา</font></a>
+			  	</li>
+			</ul>
+		</div>
+
+		
+		<div style="margin-top: 100px;">
+			<center><font  style="font-size: 140px; color: white; font-family: snt_anouvongbold; filter: opacity(0.9);">เมนูอาหาร</font></center>
+		</div>
+	</div>
+	
+	<button type="button" class="btn btn-outline-dark" style="position: fixed; top: 550px; right: 20px; width: 120px;">สั่งเลย</button>
+
+	<div class="row">
+		<div class="col-4" style="width: 100%; margin-left: 15%; margin-top: -350px;">
+
+			<hr class="bg-blue" >
+
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-6">
+					<img src="img/foodbg1.jpg" style="width: 100%; height: 110px;" id="modal1">
+				</div>
+				<div class="col-6" style="margin-top: 20px;">
+					<font size="5" style="font-family: MS Sans Serif;">เซ็ตอาหารเช้า<br>จำนวน </font>
+					<input type="number" name="" style="width:30%; border-color:  #353535; border-width: 0.5px; margin-left: 15px;" min="0">
+				</div>
+			</div>
+			<hr class="bg-blue" style="margin-top: 10px;">
+			
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-6">
+					<img src="img/food/food1.jpg" style="width: 100%; height: 110px;" id="modal1">
+				</div>
+				<div class="col-6" style="margin-top: 20px;">
+					<font size="5" style="font-family: MS Sans Serif;">สปาเก็ตตี้<br>จำนวน </font>
+					<input type="number" name="" style="width:30%; border-color:  #353535; border-width: 0.5px; margin-left: 15px;" min="0">
+				</div>
+			</div>
+			<hr class="bg-blue" style="margin-top: 10px;">
+		</div>
+
+		<div class="col-4" style="width: 100%; margin-left: 5%; margin-top: -350px;">
+
+			<hr class="bg-blue" >
+
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-6">
+					<img src="img/food/food2.jpg" style="width: 100%; height: 110px;" id="modal1">
+				</div>
+				<div class="col-6" style="margin-top: 20px;">
+					<font size="5" style="font-family: MS Sans Serif;">ส้มตำ<br>จำนวน </font>
+					<input type="number" name="" style="width:30%; border-color:  #353535; border-width: 0.5px; margin-left: 15px;" min="0">
+				</div>
+			</div>
+			<hr class="bg-blue" style="margin-top: 10px;">
+			
+			<div class="row" style="margin-top: 10px;">
+				<div class="col-6">
+					<img src="img/food/food3.jpg" style="width: 100%; height: 110px;" id="modal1">
+				</div>
+				<div class="col-6" style="margin-top: 20px;">
+					<font size="5" style="font-family: MS Sans Serif;">สเต็ก<br>จำนวน </font>
+					<input type="number" name="" style="width:30%; border-color:  #353535; border-width: 0.5px; margin-left: 15px;" min="0">
+				</div>
+			</div>
+			<hr class="bg-blue" style="margin-top: 10px;">
+		</div>
+	</div>
+	
+	<!--modal-->	
+	
+	<div class="modal fade bd-example-modal-lg" id="modal-show" tabindex="-1" role="dialog">
+	  	<div class="modal-dialog modal-lg">
+	    	<div class="modal-content">
+	      		
+	      		<img id="modal-img" style="width:100%;height:auto;margin: auto">
+	      		<h5 class="modal-title" id = "modal-title"></h5>
+	      		<!--div class="modal-body" id = "modal-content">
+	        		
+	        		
+	      		</div-->
+	    	</div>
+	  	</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>ยืนยันการสั่งอาหารทั้งหมด </p><p> 180 บาท</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary">สั่ง</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

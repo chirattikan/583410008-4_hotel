@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="fontcss/webfontkit-20171217-142157/stylesheet.css" />
+	<link rel="stylesheet" href="editpage.css" />
+
+	<!--parallax-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="parallax.js-1.5.0/parallax.js"></script>
+
+	<script async defer
+	  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwlGJnsMn-_APIJN0pg1wBfmgRLxrvvws&callback=initMap">
+	</script>
+	<script>
+		      function initMap() {
+		        var uluru = {lat: 14.6733670, lng: 104.5927860};
+		        var map = new google.maps.Map(document.getElementById('map'), {
+		          zoom: 9,
+		          center: uluru
+		        });
+		        var marker = new google.maps.Marker({
+		          position: uluru,
+		          map: map
+		        });
+		      }
+	</script>
+
+	<script type="text/javascript">
+		$(function(){ 
+			$("#home").hover(function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#room").hover(function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#food").hover(function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#contact").hover(function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+		});
+	</script>
+</head>
+<body class="graypage">
+	<div style="height: 600px; width: 100%; background-color: black; position: absolute; filter: opacity(0.3);"></div>
+	<div class="parallax-window" data-parallax="scroll" data-image-src="img/roombg4.jpg" style="margin-top: -100px;"></div>
+	
+	<div style=" width: 100%;position: relative; top: -500px;">
+		<div style="position: relative; width: 100%; top: 15px;">
+			<ul class="nav justify-content-center ">
+			  	<li class="nav-item">
+			  		<div id="hover-home" style="width: 79px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light" href="index.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="home">หน้าหลัก</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-room" style="width: 40px; height: 4px; margin-left: 16px;"></div>
+			    	<a class="nav-link text-light active" href="room.html"  style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="room">ห้อง</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-food" style="width: 182px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light" href="food.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="food">อาหารและเครื่องดื่ม</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-contact" style="width: 100px; height: 4px; margin-left: 19px;"></div>
+			    	<a class="nav-link text-light" href="" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="contact">เกี่ยวกับเรา</font></a>
+			  	</li>
+			</ul>
+		</div>
+		<div style=" margin-top: 100px;">
+			<center><font  style="font-size: 140px; color: white; font-family: snt_anouvongbold; filter: opacity(0.9);">เกี่ยวกับเรา</font></center>
+		</div>
+	</div>
+
+	<div class="containner" style="width: 100%; height: 500px; margin-top: -356px; margin-left: 20%;">
+		<h3 style="color: #353535; font-family: MS Sans Serif; margin-top: 50px;">โรงแรมภูตะวันกันทรลักษ์</h3><br>
+		<font  style="font-size: 16px; color: #353535; font-family: MS Sans Serif;">putawanhotel kanthalak<br>213 ม.3 ต.กระแชง อ.กันทรลักษ์ จ.ศรีสะเกษ 33110<br>
+		Tel. 045-810657 ,086-6630076
+		<br>
+		<br>
+		โรงแรมภูตะวันตั้งอยู่บนทางหลวงหมายเลข 221  ห่างจากสี่แยกการช่างเลี้ยวเข้าไปทางอ.กันทรลักษ์ ถนน.กันทรลักษ์-ศรีสะเกษ
+		<br>
+        ระยะทางจากแยกการช่างถึงโรงแรมประมาณ 1.5 กิโลเมตร อยู่ตรงข้ามสำนักงานขนส่งอ.กันทรลักษ์ ก่อนจะถึงอ.กันทรลักษ์
+        เพียง 5 กิโลเมตร
+        <br>
+        สถานที่ใกล้เคลียง......ศาลจังหวัด เรือนจำ ศรีษะอโศก ห้วยตามาย สำนักงานขนส่งอ.กันทรลักษ์
+        <br>
+        แหล่งท่องเทียวที่น่าสนใจ ....
+        อุทยานแห่งชาติเขาพระวิหาร  น้ำตกภูละออ น้ำตกห้วยจันทร์ วัดล้านขวด สวนเงาะ,ทุเรียน</font>
+	</div>
+	<div class="parallax-window" data-parallax="scroll" data-image-src="img/contactbg.jpg" style="margin-top:  -200px;"></div>
+	<div style=" margin-top: -420px;">
+			<center><font  style="font-size: 140px; color: white; font-family: snt_anouvongbold; filter: opacity(0.9);">แผนที่</font></center>
+	</div>
+	<div id="map" style="margin-top: 210px;"></div>
+</body>
+</html>

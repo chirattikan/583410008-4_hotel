@@ -1,0 +1,209 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hotel</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="fontcss/webfontkit-20171217-142157/stylesheet.css" />
+	<link rel="stylesheet" href="editpage.css" />
+
+	<!--parallax-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="parallax.js-1.5.0/parallax.js"></script>
+	
+	<!--login-->
+
+	<meta name="google-signin-client_id" content="189311342145-igveql0m2ff0qb78l26v3pffjf0eu37e.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<script type="text/javascript">
+		$(function(){ 
+
+
+			$("#home").hover(function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#room").hover(function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#food").hover(function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0.8)"});
+			    }, function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#contact").hover(function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+
+			var today = new Date();	
+			var datein = new Date();
+			var dateout = new Date();
+
+			var chin = $('#chin');
+			var chout = $('#chout');
+
+			chin.attr({"min":today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate()});
+			
+			chin.change(function(){
+				datein = new Date(chin.val());
+				$('#chout').attr({"min":datein.getFullYear()+"-"+(datein.getMonth()+1)+"-"+(datein.getDate()+1)});
+			});
+
+			chout.change(function(){
+				dateout = new Date(chout.val());
+				$('#chin').attr({"max":dateout.getFullYear()+"-"+(dateout.getMonth()+1)+"-"+(dateout.getDate()-1),"min":today.getFullYear()+"-"+(today.getMonth()+1)+"-"+(today.getDate()+1)});
+			});
+
+		});
+
+		//login
+		function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.4
+		  $.ajax({
+		  		url:"Glogin.php",
+		  		type: "POST",
+		  		data:{"name":profile.getName(),"email":profile.getEmail()},
+		  		success:function(e){
+		  			console.log(e);
+		  		}
+		  });
+		  var today = new Date();	
+		  today.getTime();
+		   $.ajax({
+		  		url:"loginhistory.php",
+		  		type: "POST",
+		  		data:{"name":profile.getName(),"email":profile.getEmail(), "date" : today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate() , "time" : today.getTime() },
+		  		success:function(e){
+		  			console.log(e);
+		  		}
+		  });
+		  //$('#signedbutton').hide();
+		}
+		//logout
+		
+	 
+		
+
+	</script>
+
+</head>
+<body>
+	<video autoplay loop muted style="position: absolute; width: 100%; z-index: -1; top:0; left:0; filter: brightness(0.7);">
+		<source src="video/hotel1.mp4" type="video/mp4">
+	</video>
+	
+	<div style="position: absolute;  width: 100%; top: 15px;">
+		<ul class="nav justify-content-center ">
+		  	<li class="nav-item">
+		  		<div id="hover-home" style="width: 79px; height: 4px; margin-left: 17px;"></div>
+		    	<a class="nav-link text-light active" href="" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="home">หน้าหลัก</font></a>
+		  	</li>
+		  	<li class="nav-item">
+		  		<div id="hover-room" style="width: 40px; height: 4px; margin-left: 16px;"></div>
+		    	<a class="nav-link text-light" href="room.html"  style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="room">ห้อง</font></a>
+		  	</li>
+		  	<li class="nav-item">
+		  		<div id="hover-food" style="width: 182px; height: 4px; margin-left: 17px;"></div>
+		    	<a class="nav-link text-light" href="food.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="food">อาหารและเครื่องดื่ม</font></a>
+		  	</li>
+		  	<li class="nav-item">
+		  		<div id="hover-contact" style="width: 100px; height: 4px; margin-left: 19px;"></div>
+		    	<a class="nav-link text-light" href="about.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="contact">เกี่ยวกับเรา</font></a>
+		  	</li>
+		</ul>
+		<div class="g-signin2" data-onsuccess="onSignIn" style="top: 4px; right: 10px; position: absolute;" id="signedbutton"></div>
+		<!--a href="#" onclick="signOut();" style="top: 50px; right: 10px; position: absolute;">Sign out</a-->
+	</div>
+
+	
+	
+	<center><font size="12" style="color: white; font-family: snt_anouvongbold; position: absolute; top: 220px; margin-left: -195px; filter: opacity(0.9);">โรงแรม</font></center>
+	<center><font  style="font-size: 170; color: white; font-family: snt_anouvongbold;position: absolute;  top: 200px; margin-left: -195px; filter: opacity(0.9);">ภูตะวัน</font></center>
+	<!--style="position: absolute; background-color: white; width: 100%; height: 150px; margin-top: 700px;"-->
+	<div style="position: absolute; background-color: white; width: 100%; height: 100px; margin-top: 700px; ">
+		<div  style="position: absolute; background-color: black; width: 100%; height: 100px; filter: opacity(0.1);"></div>
+		<div class="container" style="width: 70%; height: 70px;  margin-top: 15px;">
+
+		  	<div class="row justify-content-around">
+		    	<div class="col-3" style="">
+		      		<font style="">Check In</font>
+		    	</div>
+		    	<div class="col-3" style="">
+		      		<font style="">Check Out</font>
+		    	</div>
+		    	<div class="col-1" style="" >
+		      		<font style="">ผู้ใหญ่</font>
+		    	</div>
+		    	<div class="col-1" style="" >
+		      		<font style="">เด็ก</font>
+		    	</div>
+		    	<div class="col-3" style="">
+		      		
+		    	</div>
+		 	</div>
+
+		 	<div class="row justify-content-around" style="margin-top: 10px;">
+		    	<div class="col-3">
+		      		<input type="date" name="" style="width: 100%; border-color: black; border-width: 0.5px;" id="chin" >
+		    	</div>
+		    	<div class="col-3">
+		      		<input type="date" name="" style="width: 100%; border-color: black; border-width: 0.5px;" id="chout">
+		    	</div>
+		    	<div class="col-1">
+		      		<input type="number" name="" style="width: 100%;border-color: black; border-width: 0.5px;" min="0">
+		    	</div>
+		    	<div class="col-1">
+		      		<input type="number" name="" style="width: 100%; border-color: black; border-width: 0.5px;" min="0">
+		    	</div>
+		    	<div class="col-3">
+		      		<button type="button" class="btn btn-outline-dark" style="width: 100%; margin-top: -5px;">Search</button>
+		    	</div>
+		 	</div>
+		</div>
+	</div>
+	<div style="position: absolute; top: 800px; width: 100%;">
+		<div style="width: 100%; height: 600px; background-color: black; position: absolute; filter: opacity(0.05);"></div>
+		<div class="parallax-window" data-parallax="scroll" data-image-src="img/room/room6.jpg"></div>	
+		
+		<font  style="position: absolute; font-size: 140; color: white; font-family: snt_anouvongbold ; left: 500px; top: 160px; filter: opacity(0.9);">ห้องพัก</font>
+		<center><a href="room.html"><button type="button" class="btn btn-outline-light" style="position: absolute;top: 330px; margin-left: -35px;">View</button></a></center>
+	</div>
+
+	<div style="position: absolute; top: 1400px; width: 100%;">
+		<div style="width: 100%; height: 700px; background-color: black; position: absolute; filter: opacity(0.2);"></div>
+		<div class="parallax-window2" data-parallax="scroll" data-image-src="img/foodbg1.jpg" style="margin-top: 0px;"></div>
+		<font  style="position: absolute; font-size: 140; color: white; font-family: snt_anouvongbold ; left: 230px; top: 190px; filter: opacity(0.9);">อาหารและเครื่องดื่ม</font>
+		<center><a href="food.html"><button type="button" class="btn btn-outline-light" style="position: absolute;top: 360px; margin-left: -35px;">View</button></a></center>
+	</div>
+
+	<div style="position: absolute; top: 2100px; width: 100%;">
+		<div style="width: 100%; height: 700px; background-color: black; position: absolute; filter: opacity(0.1);"></div>
+		<div class="parallax-window2" data-parallax="scroll" data-image-src="img/roombg3.jpg" style="margin-top: 0px;"></div>
+		<font  style="position: absolute; font-size: 140; color: white; font-family: snt_anouvongbold ; left: 430px; top: 190px; filter: opacity(0.9);">เกี่ยวกับเรา</font>
+		<center><a href="about.html"><button type="button" class="btn btn-outline-light" style="position: absolute;top: 360px; margin-left: -35px;">View</button></a></center>
+	</div>
+
+	<div style="position: absolute; top: 2800px; width: 100%;">
+		<div style="width: 100%; height: 700px; background-color: black; position: absolute; filter: opacity(0);"></div>
+		<div class="parallax-window2" data-parallax="scroll" data-image-src="img/roombg2.jpg" style="margin-top: 0px;"></div>
+		<font  style="position: absolute; font-size: 140; color: white; font-family: snt_anouvongbold ; left: 540px; top: 190px; filter: opacity(0.9);">ติดต่อ</font>
+		<center><a href="contact.html"><button type="button" class="btn btn-outline-light" style="position: absolute;top: 360px; margin-left: -35px;">View</button></a></center>
+	</div>
+</body>
+</html>
+<!-- credit picture -->
+<!-- https://w-dog.net/search/bed/page/4/?filter=safe -->

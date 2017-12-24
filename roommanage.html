@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Room</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="fontcss/webfontkit-20171217-142157/stylesheet.css" />
+	<link rel="stylesheet" href="editpage.css" />
+	<script type="text/javascript" src="checkroom.js"></script>
+
+
+	<!--parallax-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="parallax.js-1.5.0/parallax.js"></script>
+
+	<!-- for modal -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!--icon-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script type="text/javascript">
+		$(function(){ 
+			
+
+			$("#home").hover(function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-home').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#room").hover(function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-room').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#food").hover(function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-food').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+			$("#contact").hover(function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0.7)"});
+			    }, function(){
+			    $('#hover-contact').css({"background-color":"white" , "filter":"opacity(0)"});
+			});
+
+			$.ajax({
+				url:"alldata.php",
+				type:"POST",
+				dataType:"JSON",
+				success:function(his){
+			  		console.log(his);
+			  		
+			  		
+			  		    
+			  		    var table = $('<table></table>');
+			  		    table.addClass("table");
+			  		    table.css({"width":"100%"});
+
+			  		    var row = [];
+
+			  		    for (var i = Object.keys(his).length - 1; i >= 0; i--) {
+			  		    	 row[i] = $('<tr></tr>');
+			  		    	 var col = $('<td width="5%" ></td>');
+			  		    	 col.append(his[i].id);
+			  		    	 row[i].append(col);
+
+			  		    	 var col = $('<td width="20%" ></td>');
+			  		    	 col.append(his[i].name);
+			  		    	 row[i].append(col);
+
+			  		    	 var col = $('<td width="25%" ></td>');
+			  		    	 col.append(his[i].checkin);
+			  		    	 row[i].append(col);
+
+			  		    	 var col = $('<td width="25%" ></td>');
+			  		    	 col.append(his[i].checkout);
+			  		    	 row[i].append(col);
+
+			  		    	 var col = $('<td width="25%" ></td>');
+			  		    	 col.append(his[i].description);
+			  		    	 row[i].append(col);
+						}
+					
+			  		    
+			  		   	for (var j = row.length - 1; j >= 0; j--) {
+			  		   		table.append(row[j]);
+			  		   	}
+			  		    
+
+			  		    $('#tableroom').append(table);
+			  		
+
+			  	}
+			});
+
+			var cgtoday = new Date();	
+			var cgdatein = new Date();
+			var cgdateout = new Date();
+			cgdatein = null;
+			cgdateout = null;
+
+
+
+			var cgidget = $('#changeid');
+			
+
+
+			var cgin = $('#changein');
+			var cgout = $('#changeout');
+
+			cgin.attr({"min":cgtoday.getFullYear()+"-"+(cgtoday.getMonth()+1)+"-"+cgtoday.getDate()});
+
+			cgin.change(function(){
+				cgdatein = new Date(cgin.val());
+				$('#changeout').attr({"min":cgdatein.getFullYear()+"-"+(cgdatein.getMonth()+1)+"-"+(cgdatein.getDate()+1)});
+			});
+
+			cgout.change(function(){
+				cgdateout = new Date(cgout.val());
+				$('#changein').attr({"max":cgdateout.getFullYear()+"-"+(cgdateout.getMonth()+1)+"-"+(cgdateout.getDate()-1),"min":cgtoday.getFullYear()+"-"+(cgtoday.getMonth()+1)+"-"+(cgtoday.getDate()+1)});
+			});
+
+			$('#edit').click(function(){
+				var cgidget = $('#changeid');
+				var cgid = parseInt(cgidget.val());
+				console.log(cgid);
+				$.ajax({
+					url:"update.php",
+					type:"POST",
+					data:{ "idroom" : cgid , "cgin" : cgdatein.getFullYear()+"-"+(cgdatein.getMonth()+1)+"-"+cgdatein.getDate() , "cgout" : cgdateout.getFullYear()+"-"+(cgdateout.getMonth()+1)+"-"+cgdateout.getDate() } ,
+					success:function(e){
+				  		console.log(e);
+				  	}
+				});
+			});
+
+			$('#del').click(function(){
+				var cgidget = $('#changeid');
+				var cgid = parseInt(cgidget.val());
+				console.log(cgid);
+				$.ajax({
+					url:"delete.php",
+					type:"POST",
+					data:{ "idroom" : cgid } ,
+					success:function(e){
+				  		console.log(e);
+				  	}
+				});
+			});
+		});
+
+	
+
+	</script>
+</head>
+<body class="graypage">
+	
+
+	<div class="parallax-window" data-parallax="scroll" data-image-src="img/roombg.jpg" style="margin-top: -100px;"></div>
+
+	<a href="room.html"><button type="button" class="btn btn-outline-dark" style="position: absolute; top: 5px; right: 5px; z-index: 2">กลับ</button></a>
+	<!--img src="img/roombg.jpg" style="position: absolute; width: 100%; z-index: -1; filter: brightness(0.8); top:-262px;"-->
+	<div style=" width: 100%;position: relative; top: -500px;">
+		<div style="position: relative; width: 100%; top: 15px;">
+			<ul class="nav justify-content-center ">
+			  	<li class="nav-item">
+			  		<div id="hover-home" style="width: 79px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light" href="index.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="home">หน้าหลัก</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-room" style="width: 40px; height: 4px; margin-left: 16px;"></div>
+			    	<a class="nav-link text-light active" href=""  style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="room">ห้อง</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-food" style="width: 182px; height: 4px; margin-left: 17px;"></div>
+			    	<a class="nav-link text-light" href="food.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="food">อาหารและเครื่องดื่ม</font></a>
+			  	</li>
+			  	<li class="nav-item">
+			  		<div id="hover-contact" style="width: 100px; height: 4px; margin-left: 19px;"></div>
+			    	<a class="nav-link text-light" href="about.html" style="margin-top: -10px;"><font size="5" style="font-family: MS Sans Serif;" id="contact">เกี่ยวกับเรา</font></a>
+			  	</li>
+			</ul>
+		</div>
+
+		
+		<div style="margin-top: 100px;">
+			<center><font  style="font-size: 140px; color: white; font-family: snt_anouvongbold; filter: opacity(0.9);">จัดการห้องพัก</font></center>
+		</div>
+	</div>
+	
+
+	<div style="width: 70%; margin-left: 15%; margin-top: -350px;">
+		<div style="height: 100px;"></div>
+		<div id="tableroom">
+			<table class="table"  style="width: 100%; margin-bottom: 5px;" >
+				<th  width="5%">id</th>
+				<th  width="20%">name</th>
+				<th  width="25%">check in</th>
+				<th  width="25%">check out</th>
+				<th  width="25%">description</th>
+
+				
+			</table>
+		</div>
+		<div style="height: 300px; margin-top: 25px;">
+			<input type="number" name="" style="width: 5%; border-color: black; border-width: 0.5px;" id="changeid" min="0"  value="0">
+
+			<input type="date" name="" style="width: 20%; border-color: black; border-width: 0.5px;" id="changein" >
+			<input type="date" name="" style="width: 20%; border-color: black; border-width: 0.5px;" id="changeout" >
+
+			<a href="roommanage.html"><button type="submit"  name="" id="edit" class="btn btn-outline-dark btn-sm">แก้ไข</button></a>
+			<a href="roommanage.html"><button type="submit"  name="" id="del" class="btn btn-outline-dark btn-sm">ลบ</button></a>
+			
+		</div>
+		
+	</div>
+
+	
+</body>
+</html>
